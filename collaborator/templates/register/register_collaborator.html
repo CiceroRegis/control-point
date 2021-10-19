@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<form method='POST' novalidate>
+    {% csrf_token %}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    {{ form.nome }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">cpf</label>
+                    {{ form.cpf }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    {{ form.birth_date }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">sexo</label>
+                    {{ form.sexo }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">occupation</label>
+                    {{ form.occupation }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">phone_number</label>
+                    {{ form.phone_number }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    {{ form.isWhatsapp }}
+                    <label class="form-check-label">
+                        <strong>Este numero é de Whatsapp.</strong></label>
+                    <small class="form-text text-muted" id="emailHelp">Caso o numero de celular seja de Whatsapp está
+                        opção deverá ser marcada.</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">landline</label>
+                    {{ form.landline }}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="sr-only">E-mail</label>
+                    {{ user_form.email }}
+                </div>
+            </div>
+        </div>
+        <div class="row-cols-6">
+            <div class="form-group">
+                <button class='btn btn-info' type='submit'>Salvar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+image: docker:19.03.1
+
+services:
+  - docker:19.03.1-dind
+
+variables:
+  # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+  IMAGE: registry.gitlab.com/cicero.cruz/controlpoint 
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+stages:
+  - build
+  - prepare
+  - deploy
+
+before_script:
+  - docker info
+  - docker login -u ${CI_REGISTRY_USER} -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+
+Build:
+  stage: build
+  only:
+    - master
+    - develop
+  script:
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
+
+Tests:
+  stage: prepare
+  only:
+    - master
+    - develop
+  script:
+    - docker run --rm $IMAGE python manage.py test
+
+
+Beta:
+  stage: deploy
+  only:
+    - develop
+  environment:
+    name: staging
+    url: http://localhost:8000/
+  script:
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
+
+Production:
+  stage: deploy
+  only:
+    - master
+  environment:
+    name: production
+    url: http://localhost:8000/
+  script:
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_JOB_TOKEN} ${CI_REGISTRY}

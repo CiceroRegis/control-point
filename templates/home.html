@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+{% include "push/_head_include.html" %}
+{% load static %}
+
+{% block content %}
+<!-- home cards -->
+{% include 'appointment/home-cards.html' %}
+<!-- data table home -->
+{% include 'base/data-table.html' %}
+{% endblock %}

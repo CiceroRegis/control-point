@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="row wrapper border-bottom bg-white page-heading" style="margin-bottom: 30px;">
+    <div class="col-lg-10">
+        <h2 class="text-muted profile">Formulario de cadastro de pacientes</h2>
+    </div>
+</div>
+<form method='POST' enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    {{ form.name }}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="sr-only">medical_record_number</label>
+                    {{ form.medical_record_number }}
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">RG</label>
+                    {{ form.rg_document }}
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">CPF</label>
+                    {{ form.cpf_document }}
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">sexo</label>
+                    {{ form.sexo }}
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">date of birth</label>
+                    {{ form.date_of_birth }}
+                </div>
+            </div>
+
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">phone_number</label> {{ form.phone_number }}
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="sr-only">landline</label> {{ form.landline }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="sr-only">E-mail</label> {{ form.email }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">address</label>
+                    {{ form.address }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="labelUp">Foto</label>
+                    {{ form.photo }}
+                </div>
+            </div>
+        </div>
+        <div class="row-cols-6">
+            <div class="form-group">
+                <button type='submit' class='btn btn-info'>Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

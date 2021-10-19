@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="row wrapper border-bottom bg-white page-heading" style="margin-bottom: 30px;">
+    <div class="col-lg-10">
+        <h2 class="text-muted profile">Formulario de cadastro consultas</h2>
+    </div>
+</div>
+<form action="" method='POST' novalidate>
+    {% csrf_token %}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">Descrição da consulta</label>
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">Tipos de consulta</label>
+                    {{ form.type_appointment }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">Paciente</label>
+                    {{ form.patient }}
+                </div>
+
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">professional</label>
+                    {{ form.professional }}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="sr-only">date_appointment</label>
+                    {{ form.date_appointment }}
+                </div>
+            </div>
+        </div>
+        <button class='btn btn-info' type='submit'>Salvar</button>
+    </div>
+    </div>
+</form>
+{% endblock %}

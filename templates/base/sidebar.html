@@ -1,0 +1,33 @@
+{% load static %}
+<div class="menu-list">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul id="menu-content" class="nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}"><i class="icon-speedometer"></i> Dashboard</a>
+                </li>
+
+                <li class="nav-item nav-dropdown" data-toggle="collapse" data-target="#products">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-speedometer"></i>
+                        </i>Administração</a>
+                </li>
+                <li class="sub-menu collapse" id="products">
+                    <a class="nav-link dropdown-item" href="{% url 'collaborator:list-collaborator' %}">
+                        <i class="fa fa-users"></i>Funcionarios</a>
+
+                    <a class="nav-link dropdown-item" href="{% url 'patient:patient-list' %}">
+                        <i class="fa fa-users"></i>Pacientes</a>
+
+                    <a class="nav-link dropdown-item" href="{% url 'appointments:list-appointments' %}">
+                        <i class="fa fa-users"></i>Consultas</a>
+
+                    <i class="icon-speedometer"></i> Configuração</a>
+                    <a class="nav-link dropdown-item" href="#">
+                        <i class="icon-speedometer"></i>Financeiro</a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button> {% block sidebar %} {% endblock %}
+    </div>
+</div>

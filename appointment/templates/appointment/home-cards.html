@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'dist/css/cards-home.css' %}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<html lang="en">
+
+
+{% block body %}
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-ticket"></i>
+        <span class="count-numbers">{{ show_total_values }}</span>
+        <span class="count-name">Consultas</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers">{{ show_total_values_today }}</span>
+        <span class="count-name">Total consultas Hoje</span>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers">{{ show_total_values_month }}</span>
+        <span class="count-name">Este mês</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers">{{ show_total_values_last_month }}</span>
+        <span class="count-name">Mês Passado</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}

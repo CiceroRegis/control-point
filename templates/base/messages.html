@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- flag messages success -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<!-- flag messages erros -->
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li><a href="#id_{{ field.name }}" class="text text-danger" style="text-decoration:none;">{{ error|escape }}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>

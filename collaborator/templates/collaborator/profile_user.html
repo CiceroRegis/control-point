@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+{% block css %}
+<link href="{% static 'dist/css/base.css' %}" rel="stylesheet">
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+      integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" rel="stylesheet">
+
+{% endblock %}
+
+<div class="row wrapper border-bottom bg-white page-heading">
+    <div class="col-lg-10">
+        <h2 class="text-muted profile">Perfil do Profissional</h2>
+        <p class="text-muted" style="margin-bottom: 10px;font-size: 15px;"><strong>Informações sobre o
+            profissional</strong></p>
+    </div>
+</div>
+<section class="container mt-4 mb-4">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {% for profile in profile %}
+                <div class="d-flex flex-row border rounded">
+                    {% if user.get_group_permissions %}
+                    <div class="p-0 w-25">
+                        <img class="img-thumbnail border-0" height="10"
+                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzkUTpA8urvDEBgB7ltguSPzmpGrzOTSz4WpeGEC-3Q2M9O5L1" class="img-avatar" alt="avatar" style="border-radius: 50%;"
+                             width="200">
+                    </div>
+                    <div class="pl-3 pt-2 pr-2 pb-2 w-75">
+                        <h4 class="text-muted">{{ user.profile.nome }}</h4>
+                        {% else %}
+                        <p class="mb-0"><strong>Nome:</strong><span class="badge badge-warning">
+                                Seu perfil ainda não está cadastrado</span></p>
+                        {% endif %}
+
+                        <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
+                            {% if user.email %}
+                            <li class="text-muted"><strong>E-mail:</strong> {{ user.email }}</li>
+                            {% else %}
+                            <li class="text-muted"><strong>E-mail:</strong><span class="badge badge-danger"> Não possui
+                            </span></li>
+                            {% endif %}
+                            <li class="text-muted"><strong>Profissão: </strong>{{ user.profile.occupation }}</li>
+                            <li class="text-muted"><strong>Sexo: </strong>{{ user.profile.sexo }}</li>
+                            {% if user.is_active %}
+                            <li class="text-muted"><strong>Status: </strong><span class="badge badge-success">ativo
+                            </span>
+                            <li>
+                                {%else%}
+                            <li class="text-muted"><strong>Status: </strong><span class="badge badge-Danger">inativo
+                        </span>
+                            <li>
+                                {%endif%}
+                            <li class="text-muted"><strong>Ultimo Login: </strong> {{ user.last_login }}</li>
+                            <li class="text-muted"><strong>Voçê é funcionario desde: </strong>
+                                {{ user.date_joined | date:'d/m/Y' }}
+                            </li>
+                            <li class="text-muted"><strong>data de aniversario: </strong> {{ user.profile.birth_date | date:'d/m/Y' }}
+                            </li>
+                            <br><br>
+                        </ul>
+                        <p class="text-right m-0" style="float: right;"><a
+                                class="btn btn-primary"
+                                href="{% url 'collaborator:update_profile_collaborator' profile.id %}"><i class="far fa-user"></i>Atualizar dados</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
